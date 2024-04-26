@@ -1,0 +1,26 @@
+.landingContainer {
+    background-color: black;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: whitesmoke
+}
+
+.textosLanding{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    align-items: center;
+    margin: 1.2em;
+}
+
+.h1Landing {
+    font-size: 2.5em;
+}
+
+.imgLanding {
+    margin: 0.2em;
+}

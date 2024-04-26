@@ -1,0 +1,38 @@
+.productPhoto {
+    margin: 3em;
+}
+
+.sectionProduct {
+    display:flex;
+    flex-direction: row;
+    font-family: system-ui;
+}
+
+.infoProduct {
+    display: flex;
+    flex-direction: column;
+    margin: 5em;
+    gap: 1em;
+}
+
+.formProduct {
+    display:flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.nameProduct {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: .5em;
+}
+
+.priceProduct {
+    font-size: 1.5em;
+    margin-bottom: .5em;
+}
+
+.secondaryText {
+    font-size: 1em;
+    margin-bottom: .5em;
+}

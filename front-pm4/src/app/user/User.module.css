@@ -1,0 +1,34 @@
+.sectionUser {
+    display: flex;
+    flex-direction: row;
+    font-family: system-ui;
+}
+
+.divisionSection {
+    width: 50vw;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+    line-height: 1.5;
+}
+
+.formLogin {
+    display:flex;
+    flex-direction: column;
+    gap:.3em;
+    margin-top: 12px;
+}
+
+.sectionTitle {
+    margin-left: 1.8em;
+    font-size: 1.2em;
+    font-weight: 500;
+    font-family: system-ui;
+}
+
+.titleLogin {
+    font-size: 1em;
+    font-weight:500 ;
+}
+
