@@ -1,0 +1,30 @@
+.containerLogo {
+    display:flex;
+    justify-content: center;
+}
+
+.navBar {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ margin: 30px;
+ font-family: system-ui;
+}
+
+.ulNavBar {
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+
+.endNavBar{
+    display:flex;
+    flex-direction: row;
+    gap: 18px;
+}
+
+.link {
+    color:black;
+    font-weight: 500;
+    font-size: .8em;
+}

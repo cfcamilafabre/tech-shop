@@ -1,10 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+//styles 
+import styles from './Navbar.module.css'
+
 export const Navbar = () => {
     return (<>
 
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className={styles.containerLogo}>
             <Image
                 src='/tech.png'
                 width={200}
@@ -12,21 +15,21 @@ export const Navbar = () => {
                 alt="Logo"
             />
         </div>
-        <header style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", margin: "30px" }}>
+        <header className={styles.navBar}>
             <div>
-                <Link href="">search</Link>
+                <Link className={styles.link} href="">search</Link>
             </div>
             <div>
-                <ul style={{ display: "flex", flexDirection: "row", gap: "80px" }}>
-                    <li><Link href="">HOME</Link></li>
-                    <li><Link href="">SHOP</Link></li>
-                    <li><Link href="">ABOUT</Link></li>
-                    <li><Link href="">CONTACT US</Link></li>
+                <ul className={styles.ulNavBar}>
+                    <li><Link className={styles.link} href="/">HOME</Link></li>
+                    <li><Link className={styles.link} href="">SHOP</Link></li>
+                    <li><Link className={styles.link} href="">ABOUT</Link></li>
+                    <li><Link className={styles.link} href="">CONTACT US</Link></li>
                 </ul>
             </div>
-            <div style={{ display: "flex", flexDirection: "row", gap: "18px" }}>
-                <Link href="">carrito</Link>
-                <Link href="">account</Link>
+            <div className={styles.endNavBar}>
+                <Link className={styles.link} href="/checkout">carrito</Link>
+                <Link className={styles.link} href="">account</Link>
             </div>
         </header>
     </>

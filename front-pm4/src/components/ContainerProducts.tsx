@@ -1,5 +1,5 @@
 // components
-import { ProductCard } from '../components/ProductCard'
+import { ProductCard } from './ProductCard/ProductCard'
 
 const ContainerProductCards = () => {
 

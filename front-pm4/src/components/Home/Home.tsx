@@ -5,12 +5,16 @@ import Link from "next/link";
 import ContainerProducts from "../ContainerProducts"
 import Navbar from "../Navbar/Navbar";
 
+//styles
+import styles from './Home.module.css'
+
 export function Home() {
 
   return (
     <>
       <section style={{ width: "100%" }}>
-        <Link href="">
+          <Navbar></Navbar>
+          <Link href="">
           <Image
             src='/logoTech.webp'
             width={1400}
@@ -18,12 +22,11 @@ export function Home() {
             alt="tech"
             style={{ maxWidth: "100%" } as React.CSSProperties}
           />
-          <Navbar></Navbar>
         </Link>
       </section>
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <h4>Experience is the new luxury!</h4>
-        <span>-Tech Shop.</span>
+      <div className={styles.textContainer}>
+        <h4 className={styles.textExperience}>Experience is the new luxury!</h4>
+        <span className={styles.textTechShop}>-Tech Shop.</span>
       </div>
       <ContainerProducts></ContainerProducts>
     </>
