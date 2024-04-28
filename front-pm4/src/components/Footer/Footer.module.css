@@ -1,0 +1,42 @@
+.footerContainer{
+    background-color: #303030;
+    color: rgb(202, 202, 202);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1em;
+    flex-wrap: wrap;
+}
+
+.divFooter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1em;
+    line-height: 1.5;
+    font-family: system-ui;
+}
+
+.rightsReserved{ 
+    margin: 0em 1em 1.2em 1.4em;
+    font-size: .8em;
+}
+
+.secondaryText {
+    font-family: system-ui;
+    font-size: .8em;
+}
+
+.tituloFooter {
+    font-weight: 500;
+    font-size: .9em;
+}
+
+.linkRedes {
+    color: rgb(202, 202, 202);
+    font-size: .8em;
+}
+
+.linkRedes:hover{
+    opacity: .6;
+}

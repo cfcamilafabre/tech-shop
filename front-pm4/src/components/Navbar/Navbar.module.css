@@ -28,3 +28,7 @@
     font-weight: 500;
     font-size: .8em;
 }
+
+.link:hover{
+    opacity: 0.6;
+}

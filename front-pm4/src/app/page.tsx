@@ -1,11 +1,11 @@
 'use client'
 
-import Home from "@/components/Home/Home"
+import Landing from './landing/page'
 
-export {default} from "@/components/Home/Home"
+export {default} from "./landing/page"
 
 export const Page = () => {
   return (
-    <Home></Home>
+    <Landing></Landing>
   )
 }

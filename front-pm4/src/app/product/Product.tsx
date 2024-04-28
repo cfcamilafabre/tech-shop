@@ -1,5 +1,4 @@
 // components
-import Navbar from "@/components/Navbar/Navbar";
 import Image from "next/image";
 
 // styles
@@ -8,7 +7,6 @@ import styles from './Product.module.css'
 export const Product = () => {
     return (
         <>
-            <Navbar></Navbar>
             <section className={styles.sectionProduct}>
                 <div>
                     <Image 

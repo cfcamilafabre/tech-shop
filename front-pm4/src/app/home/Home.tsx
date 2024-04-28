@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 //components
-import ContainerProducts from "../ContainerProducts"
-import Navbar from "../Navbar/Navbar";
+import ContainerProducts from "../../components/ContainerProducts/ContainerProducts"
+
 
 //styles
 import styles from './Home.module.css'
@@ -13,7 +13,6 @@ export function Home() {
   return (
     <>
       <section style={{ width: "100%" }}>
-          <Navbar></Navbar>
           <Link href="">
           <Image
             src='/logoTech.webp'
