@@ -1,6 +1,9 @@
 // components
 import { ProductCard } from '../ProductCard/ProductCard'
 
+//styles
+import styles from './ContainerProducts.module.css'
+
 const ContainerProductCards = () => {
 
     const products = [
@@ -61,8 +64,7 @@ const ContainerProductCards = () => {
     ]
 
     return (
-        <>
-        <div style={{display: "grid", gridTemplateColumns:"repeat(auto-fit, minmax(350px, 2fr))", gap:"20px", margin: "20px"}}>
+        <div className={styles.containerCards} >
             {products.map((card) => {
                 return (
                     <ProductCard
@@ -74,7 +76,6 @@ const ContainerProductCards = () => {
                 )
             })}
         </div>
-        </>
     )
 }
 

@@ -21,9 +21,10 @@ export const Navbar: React.FC<INavProps> = ({backgroundColor, textColor}) => {
             />
         </div>
         <header className={styles.navBar}  style={{backgroundColor:backgroundColor, color:textColor}}>
-            <div>
-                <Link className={styles.link} href="">search</Link>
-            </div>
+          <form style={{display:"flex", gap:".4em"}}>
+                <input type="string" placeholder="Buscar"></input>
+                <button></button>
+                </form>
             <div>
                 <ul className={styles.ulNavBar}>
                     <li><Link className={styles.link} href="/home">HOME</Link></li>

@@ -9,6 +9,7 @@
  justify-content: space-between;
  margin: 30px;
  font-family: system-ui;
+ align-items: center;
 }
 
 .ulNavBar {

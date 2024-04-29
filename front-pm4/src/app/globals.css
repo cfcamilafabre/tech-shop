@@ -15,7 +15,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	font: system-ui;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -52,3 +52,19 @@ body {
 a{
   text-decoration: none;
 }
+
+input{
+	outline:none;
+	border:none;
+	padding: .3em;
+	@apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.buttonDesign{
+    @apply font-bold py-2 px-8 rounded bg-pinkCustome text-offWhite border-none cursor-pointer;
+}
+
+.buttonDesign:hover{
+    @apply bg-offWhite text-pinkCustome;
+}
+

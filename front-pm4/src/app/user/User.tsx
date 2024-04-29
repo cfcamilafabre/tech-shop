@@ -7,7 +7,6 @@ import Navbar from '@/components/Navbar/Navbar';
 export const User = () => {
     return (
         <div>
-            <Navbar></Navbar>
             <h1 className={styles.sectionTitle}>Acceso del cliente</h1>
             <section className={styles.sectionUser} >
                 <div className={styles.divisionSection}>
@@ -22,13 +21,13 @@ export const User = () => {
                         <label>Contraseña</label>
                         <input type="password"></input>
                         </div>
-                        <button>Inicia sesion</button>
+                        <button className='buttonDesign'>Inicia sesion</button>
                     </form>
                 </div>
                 <div className={styles.divisionSection}>
                     <h1 className={styles.titleLogin}>Nuevos clientes</h1>
                     <span>¿Primera vez? Registrate en pocos segundos y sigue con tu compra. Podés acceder a beneficios exclusivos</span>
-                    <button>Crear una cuenta</button>
+                    <button className='buttonDesign' style={{width:'16em'}}>Crear una cuenta</button>
                 </div>
             </section>
         </div>

@@ -28,7 +28,7 @@ export const Product = () => {
                         <form className={styles.formProduct}>
                             <label>Cantidad</label>
                             <input type="number"></input>
-                            <button>Agregar al carrito</button>
+                            <button className="buttonDesign">Agregar al carrito</button>
                         </form>
                     </div>
                 </div>
