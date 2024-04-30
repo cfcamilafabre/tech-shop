@@ -32,7 +32,7 @@ export const Footer = () => {
                 <span className={styles.secondaryText}>Subscribe now to get daily updates</span>
                 <form style={{display:'flex', flexDirection:'column'}}>
                     <input type='string' placeholder='Your email address'></input>
-                    <button className='buttonDesign mt-3'>SUBSCRIBE</button>
+                    <button className='buttonDesign mt-3' style={{marginTop:".5em"}} >SUBSCRIBE</button>
                 </form>
             </div>
         </footer>

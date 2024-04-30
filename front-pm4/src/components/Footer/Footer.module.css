@@ -6,6 +6,7 @@
     justify-content: space-around;
     padding: 1em;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 .divFooter {

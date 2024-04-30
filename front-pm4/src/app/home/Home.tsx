@@ -17,7 +17,7 @@ export function Home() {
           <Image
             src='/logoTech.webp'
             width={1400}
-            height={240}
+            height={270}
             alt="tech"
             style={{ maxWidth: "100%" } as React.CSSProperties}
           />
