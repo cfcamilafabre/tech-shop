@@ -3,10 +3,10 @@
     color: rgb(202, 202, 202);
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     padding: 1em;
     flex-wrap: wrap;
     align-items: flex-start;
+    @apply justify-start md:justify-around;
 }
 
 .divFooter {

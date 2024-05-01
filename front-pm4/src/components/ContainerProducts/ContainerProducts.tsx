@@ -64,7 +64,7 @@ const ContainerProductCards = () => {
     ]
 
     return (
-        <div className={styles.containerCards} >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[6em] flex-wrap m-8 p-8 justify-items-center" >
             {products.map((card) => {
                 return (
                     <ProductCard
