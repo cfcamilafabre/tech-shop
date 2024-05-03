@@ -20,13 +20,13 @@ export const validate = (values: IRegisterProps): IRegisterErrorProps => {
         }
     
 
-    if(!values.birthdate) {
-        errors.birthdate = "El campo es obligatorio"
+    if(!values.address) {
+        errors.address = "El campo es obligatorio"
         }
     
 
-    if(!values.nDni) {
-        errors.nDni = "El campo es obligatorio"
+    if(!values.phone) {
+        errors.phone = "El campo es obligatorio"
         }
     
     return errors;

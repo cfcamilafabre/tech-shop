@@ -1,17 +1,15 @@
 export interface IRegisterProps {
         name: string;
-        birthdate: string;
-        nDni: any;
         email: string;
         password: string;
-        confirmPassword: string;
+        address: string;
+        phone: string;
 }
 
 export interface IRegisterErrorProps {
     name?: string;
-    birthdate?: string;
-    nDni?: any;
     email?: string;
     password?: string;
-    confirmPassword?: string;
+    address?: string;
+    phone?: string;
 }

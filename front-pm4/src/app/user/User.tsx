@@ -22,26 +22,44 @@ export const User = () => {
         password: ''
     })
 
-    const [errors, setErrors] = useState<ILoginErrorProps> ({
-        email:'El email es requerido',
-        password:'La contraseña es requerida'
+    const [errors, setErrors] = useState<ILoginErrorProps>({
+        email: 'El email es requerido',
+        password: 'La contraseña es requerida'
     })
 
     //maneja el envio del form
-    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (errors.email || errors.password) {
-            return alert ("Error en el login. Datos incorrectos")
+            return alert("Error en el login. Datos incorrectos")
         }
-        router.push("/home")
+        
+        try{
+        fetch("http://localhost:3001/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ ...userData }),
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                const { token, user } = json
+                localStorage.setItem("userSession", JSON.stringify({token: token, userData: user}));
+                alert(`Bienvenid@ ${userData.email}`)
+                router.push("/home")
+            });
+        } catch (error:any) {
+            throw new Error(error);
+        }
     }
 
     //maneja los cambios en el input ao vivo
-    const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         //modificamos el estado con los valores actuales
         setUserData({
             ...userData,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
