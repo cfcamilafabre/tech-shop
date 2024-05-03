@@ -26,7 +26,7 @@ export const ProductCard: React.FC<IProductProps> = ({ name, price, image}) => {
             className={styles.imageProduct}></Image>
             </div>
             <span>{name}</span>
-            <span>{price}</span>
+            <span>{price}USD</span>
         </div>
     );
 }

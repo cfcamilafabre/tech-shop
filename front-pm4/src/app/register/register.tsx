@@ -1,16 +1,21 @@
 'use client';
 //hooks
 import { useState, useEffect } from "react";
+import { useRouter} from "next/navigation";
 
 //helpers
 import { validate } from "@/helpers/validate";
+//interfaces
+import { IRegisterProps, IRegisterErrorProps } from "../interfaces/registerProps";
 
 export const Register = () => {
+
+    const router = useRouter();
 
     const initialState = {
         name: '',
         birthdate: '',
-        nDni: '',
+        nDni:'' ,
         email: '',
         password: '',
         confirmPassword: ''
@@ -25,28 +30,23 @@ export const Register = () => {
         confirmPassword: 'La contraseña de confirmacion es requerida'
     }
 
-    const [userData, setUserData] = useState(initialState);
+    const [userData, setUserData] = useState<IRegisterProps>(initialState);
 
-    const [errors, setErrors] = useState(initialErrors);
-    
-    const [form, setForm] = useState(initialState);
+    const [errors, setErrors] = useState<IRegisterErrorProps>(initialErrors);
 
-    const handleOnSubmit = (event:any) => {
+    const handleOnSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (userData.password !== userData.confirmPassword) {
             setErrors({ ...errors, confirmPassword: 'Las contraseñas no coinciden' });
             return;
         }
+        router.push("/user")
 
     }
 
-    const handleChange = (event:any) => {
+    const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
         const { name, value} = event.target;
-        
-        setForm({
-            ...form, [name]: value
-        });
 
         setUserData({
             ...userData,
@@ -56,8 +56,10 @@ export const Register = () => {
 
     //validar errores cuando se actualiza el form
     useEffect(() => {
-        setErrors(validate(form, errors));
-    }, [form])
+        const errors = validate(userData)
+        setErrors(errors)
+
+    }, [userData])
     
 
     return ( 
@@ -72,7 +74,7 @@ export const Register = () => {
                     </div>
                     <div className="my-4">
                         <label>Fecha de nacimiento:</label>
-                        <input type='date' value={userData.birthdate} name='birthdate'  onChange={handleChange} className="my-1"  />
+                        <input type='text' value={userData.birthdate} name='birthdate'  onChange={handleChange} className="my-1"  />
                         {errors.birthdate && <p style={{ color: 'red' }}>{errors.birthdate}</p>}
                         
                     </div>

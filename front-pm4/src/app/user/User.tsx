@@ -2,58 +2,54 @@
 
 //hooks
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 // styles
 import styles from './User.module.css'
 //components
-import { validate } from '@/helpers/validate';
 import Link from 'next/link';
+//interfaces
+import { ILoginErrorProps, ILoginProps } from '../interfaces/loginProps'
+import { validateLoginForm } from '@/helpers/validateLogin';
 
 
 export const User = () => {
 
+    const router = useRouter();
+
     //iniciamos un estado para los inputs
-    const [userData, setUserData] = useState({
+    const [userData, setUserData] = useState<ILoginProps>({
         email: '',
         password: ''
     })
 
-    const [errors, setErrors] = useState ({
+    const [errors, setErrors] = useState<ILoginErrorProps> ({
         email:'El email es requerido',
         password:'La contraseña es requerida'
     })
 
-    const [form, setForm] = useState({
-        email: '',
-        password: ''
-    })
-
     //maneja el envio del form
-    const handleSubmit = (event:any) => {
+    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (errors.email || errors.password) {
             return alert ("Error en el login. Datos incorrectos")
         }
+        router.push("/home")
     }
 
     //maneja los cambios en el input ao vivo
-    const handleChange = (event:any) => {
-        const {name, value} = event.target;
-
-        setForm ({
-            ...form, [name]: value
-        })
-
+    const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
         //modificamos el estado con los valores actuales
         setUserData({
             ...userData,
-            [name]: value 
+            [event.target.name] : event.target.value
         })
-        
     }
 
     useEffect(() => {
-        setErrors(validate(form, errors));
-    }, [form])
+        const errors = validateLoginForm(userData)
+        setErrors(errors)
+
+    }, [userData])
 
     return (
         <div>
@@ -65,12 +61,12 @@ export const User = () => {
                     <form onSubmit={handleSubmit} className={styles.formLogin}>
                         <div className={styles.formLogin}>
                             <label>Email</label>
-                            <input type='text' name='email' value={userData.email} placeholder='example@mail.com' onChange={handleChange}></input>
+                            <input type='text' name='email' value={userData.email} placeholder='example@mail.com' onChange={handleChange} required></input>
                             {errors.email && <span>{errors.email}</span>}
                         </div>
                         <div className={styles.formLogin}>
                             <label>Contraseña</label>
-                            <input type="password" name='password' value={userData.password} placeholder='*********' onChange={handleChange} ></input>
+                            <input type="password" name='password' value={userData.password} placeholder='*********' onChange={handleChange} required ></input>
                             {errors.password && <span>{errors.password}</span>}
                         </div>
                         <button className='buttonDesign disabled:bg-gray-400 disabled:hover:text-white disabled:hover:cursor-default' type="submit" disabled={!userData.email || !userData.password} >Inicia sesion</button>

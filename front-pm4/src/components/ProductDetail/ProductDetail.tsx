@@ -1,16 +1,25 @@
+"use client";
 // components
 import Image from "next/image";
 
 // styles
-import styles from './Product.module.css'
+import styles from './ProductDetail.module.css'
 
-export const Product = () => {
+interface IProductDetail {
+    id?: any,
+    image: string,
+    name: string,
+    price: string,
+    description: string
+}
+
+export const ProductDetail: React.FC<IProductDetail> = ({ image, name, price, description}) => {
     return (
         <>
             <section className={styles.sectionProduct}>
                 <div>
                     <Image 
-                    src='/iphone.jpg'
+                    src={image}
                     height={480}
                     width={480}
                     alt="foto producto"
@@ -19,9 +28,9 @@ export const Product = () => {
                 </div>
                 <div className={styles.infoProduct}>
                     <div>
-                    <h1 className={styles.nameProduct}>Iphone 15 PRO</h1>
-                    <h2 className={styles.priceProduct}>$600usd</h2>
-                    <p className={styles.secondaryText}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error officiis tempora itaque autem a cum voluptate quasi nostrum ducimus repellendus, molestias, assumenda expedita nihil accusamus, est incidunt similique pariatur optio?</p>
+                    <h1 className={styles.nameProduct}>{name}</h1>
+                    <h2 className={styles.priceProduct}>{`${price}$USD`}</h2>
+                    <p className={styles.secondaryText}>{description}</p>
                     <span className={styles.secondaryText}>Descuento pagando con transferencia bancaria o efectivo</span>
                     </div>
                     <div>
@@ -37,4 +46,4 @@ export const Product = () => {
     )
 }
 
-export default Product;
+export default ProductDetail;
