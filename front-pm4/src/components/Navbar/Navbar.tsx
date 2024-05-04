@@ -1,8 +1,12 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 
 //styles 
 import styles from './Navbar.module.css'
+import { useEffect, useState } from "react";
+import { IUserSession } from "@/app/interfaces/IUserSession";
+import { redirect, useRouter } from "next/navigation";
 
 interface INavProps {
     backgroundColor?: string;
@@ -10,6 +14,22 @@ interface INavProps {
 }
 
 export const Navbar: React.FC<INavProps> = ({backgroundColor, textColor}) => {
+
+    const router = useRouter();
+
+    const [userSession, setUserSession] = useState<IUserSession>();
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.localStorage) {
+            const userToken = localStorage.getItem('userSession');
+            setUserSession(JSON.parse(userToken!))
+        }
+    }, [])
+
+    const handleLogOut = () => {
+        localStorage.removeItem('userSession')
+        router.push("/login")
+    }
+
     return (<>
 
         <div className={styles.containerLogo}>
@@ -37,22 +57,27 @@ export const Navbar: React.FC<INavProps> = ({backgroundColor, textColor}) => {
                     <li><Link className={styles.link} href="">CONTACT US</Link></li>
                 </ul>
             </div>
+            {userSession?
             <div className={styles.endNavBar}>
-                <Link className={styles.link} href="/checkout"><Image
-                src='/shop.svg'
-                width={20}
-                height={20}
-                alt="checkout carrito"
-            /></Link>
-                <Link className={styles.link} href="/user">
-                    <Image
-                src='/person-fill.svg'
-                width={20}
-                height={20}
-                alt="myaccount"
-            />
-            </Link>
-            </div>
+            <Link className={styles.link} href="/cart"><Image
+            src='/shop.svg'
+            width={20}
+            height={20}
+            alt="cart items"
+        /></Link>
+            <Link className={styles.link} href="/user">
+            <Image
+            src='/person-fill.svg'
+            width={20}
+            height={20}
+            alt="myaccount"
+        />
+        </Link>
+        <button type="button" className="buttonDesign" onClick={handleLogOut}>Cerrar sesión</button>
+        </div>
+        : <div>
+        <Link className="buttonDesign" href="/login">Ingresá</Link>
+    </div>}
         </header>
     </>
     )

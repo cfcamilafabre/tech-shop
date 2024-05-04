@@ -4,7 +4,7 @@ import Link from "next/link";
 
 //components
 import ContainerProducts from "../../components/ContainerProducts/ContainerProducts"
-import { User } from "../user/User"
+import { User } from "../login/Login"
 
 
 //styles

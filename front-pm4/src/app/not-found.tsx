@@ -6,7 +6,7 @@ export const notFoundPage = () => {
         <h1 style={{fontSize:"2.5em"}}> ¡Lo sentimos! Esta página no existe
         </h1>
         <h2 style={{fontSize:"1.8em"}}>Quieres volver a la página principal?</h2>
-        <Link href='/home' style={{padding:".8em", backgroundColor:"#CAAAAD", color:"white", borderRadius:"5%"}}>Haz click aquí</Link>
+        <Link href='/' style={{padding:".8em", backgroundColor:"#CAAAAD", color:"white", borderRadius:"5%"}}>Haz click aquí</Link>
         </div>
     )
 }

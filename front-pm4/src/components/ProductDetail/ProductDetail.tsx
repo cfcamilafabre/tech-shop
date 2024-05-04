@@ -5,17 +5,26 @@ import Image from "next/image";
 // styles
 import styles from './ProductDetail.module.css'
 
+//image
+import image from './../../../public/iphone.jpg'
+
 interface IProductDetail {
     id?: any,
-    image: string,
+    image?: any,
     name: string,
-    price: string,
-    description: string
+    price: number,
+    description: string,
+    onClick: (...args:any []) => any
 }
 
-export const ProductDetail: React.FC<IProductDetail> = ({ image, name, price, description}) => {
+export const ProductDetail: React.FC<IProductDetail> = ({ image, name, price, description, onClick}) => {
+
+    const onClickHandle = () => {
+        onClick;
+    }
+
+
     return (
-        <>
             <section className={styles.sectionProduct}>
                 <div>
                     <Image 
@@ -37,12 +46,11 @@ export const ProductDetail: React.FC<IProductDetail> = ({ image, name, price, de
                         <form className={styles.formProduct}>
                             <label>Cantidad</label>
                             <input type="number"></input>
-                            <button className="buttonDesign">Agregar al carrito</button>
+                            <button className="buttonDesign" onClick={onClickHandle}>Agregar al carrito</button>
                         </form>
                     </div>
                 </div>
             </section>
-        </>
     )
 }
 

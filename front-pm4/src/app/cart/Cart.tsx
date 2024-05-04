@@ -1,8 +1,24 @@
+'use client'
 //styles
 import Link from 'next/link';
-import styles from './Checkout.module.css';
+import styles from './Cart.module.css';
+//hooks
+import { useState, useEffect } from 'react';
+import { redirect } from 'next/navigation';
 
-export const Checkout = () => {
+export const Cart = () => {
+
+    const [token, setToken] = useState()
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && window.localStorage) {
+            const userToken = localStorage.getItem('userSession');
+            setToken(JSON.parse(userToken!))
+            !userToken && redirect('/user')
+        }
+    }, [])
+
+
     return (
         <>
         <section className={styles.sectionCheckout}>
@@ -25,4 +41,4 @@ export const Checkout = () => {
     )
 }
 
-export default Checkout;
+export default Cart;
