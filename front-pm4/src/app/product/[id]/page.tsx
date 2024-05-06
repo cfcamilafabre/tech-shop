@@ -31,6 +31,12 @@ export const Product = ({ params }: { params: { id: any } }) => {
         if (!userSession) {
             alert("Debes estar logeado para poder realizar la compra")
             router.push("/login")
+        } else {
+            const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+            cart.push(product)
+            localStorage.setItem("cart", JSON.stringify(cart))
+            alert("Se agrego el producto a tu carrito")
+            router.push("/home")
         }
     }
 
@@ -43,7 +49,7 @@ export const Product = ({ params }: { params: { id: any } }) => {
                         name={product.name}
                         price={product.price}
                         description={product.description}
-                        onClick={handleBuy}                   
+                        handleBuy={handleBuy}                   
                         image={product.image}
                 />
                 )

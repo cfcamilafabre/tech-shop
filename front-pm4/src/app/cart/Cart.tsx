@@ -5,10 +5,15 @@ import styles from './Cart.module.css';
 //hooks
 import { useState, useEffect } from 'react';
 import { redirect } from 'next/navigation';
+import { IProduct } from '../interfaces/IProduct';
+import { IUserSession } from '../interfaces/IUserSession';
+import { createOrder } from '@/helpers/orders.helpers';
 
 export const Cart = () => {
 
-    const [token, setToken] = useState()
+    const [token, setToken] = useState<IUserSession>()
+    const [cart, setCart] = useState<IProduct[]>([])
+    const [total, setTotal] = useState<number>(0)
 
     useEffect(() => {
         if (typeof window !== "undefined" && window.localStorage) {
@@ -16,27 +21,62 @@ export const Cart = () => {
             setToken(JSON.parse(userToken!))
             !userToken && redirect('/user')
         }
+
+        const storedCard = JSON.parse(localStorage.getItem("cart") || "[]");
+        if(storedCard) {
+           let totalCart = 0;
+           storedCard?.map((item:IProduct) => {
+            totalCart = totalCart + item.price
+           })
+           setTotal(totalCart)
+           setCart(storedCard)
+        }
     }, [])
+
+    async function handleCheckout() {
+        try {
+            const orderProducts = new Set(cart.map((product) => product.id))
+            await createOrder(Array.from(orderProducts), token?.token!)
+            localStorage.setItem("cart", "[]");
+            setCart([]);
+            setTotal(0);
+            alert("Compra realizada con éxito")
+        } catch (error:any) {
+            throw new Error (error)
+        }
+    }
 
 
     return (
         <>
-        <section className={styles.sectionCheckout}>
-        <h1 className={styles.titlePage}>Mi carrito de compras</h1>
-        <div className={styles.item}>
-            <span>Nombre del producto</span>
-            <span>Precio</span>
-            <button className='buttonDesign'>Eliminar</button>
-        </div>
-        <div className={styles.totalCheckout}>
-            <span>Total</span>
-            <span>$total</span>
-        </div>
-        <div className={styles.buttonsContainer}>
-        <button className='buttonDesign' style={{width:"30%"}}>Iniciar compra</button>
-        <Link href="" style={{color:"black"}}>Seguir comprando</Link>
-        </div>
-        </section>
+            <section className={styles.sectionCheckout}>
+                <h1 className={styles.titlePage}>Mi carrito de compras</h1>
+
+                {
+                    cart.length > 0 ? (
+                        cart?.map((item) => {
+                            return (
+                                <div className={styles.item} key={item.id}>
+                                    <span>{item.name}</span>
+                                    <span>${item.price} USD</span>
+                                    <button className='buttonDesign'>Eliminar</button>
+                                </div>
+                            )
+                        })
+                    ) : (
+                        <span>No tienes ningun producto agregado a tu carrito</span>
+                    )
+                }
+
+                <div className={styles.totalCheckout}>
+                    <span>Total:</span>
+                    <span>${total}</span>
+                </div>
+                <div className={styles.buttonsContainer}>
+                    <button className='buttonDesign' style={{ width: "30%" }} onClick={handleCheckout}>Iniciar compra</button>
+                    <Link href="" style={{ color: "black" }}>Seguir comprando</Link>
+                </div>
+            </section>
         </>
     )
 }
