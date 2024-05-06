@@ -4,7 +4,7 @@ import Link from "next/link";
 
 //components
 import ContainerProducts from "../../components/ContainerProducts/ContainerProducts"
-import { User } from "../login/Login"
+import { Login } from "../login/Login"
 
 
 //styles
@@ -19,7 +19,7 @@ export function Home() {
     if (typeof window !== "undefined" && window.localStorage) {
       const userToken = localStorage.getItem('userSession');
       setToken(JSON.parse(userToken!))
-      !userToken && redirect("/user")
+      !userToken && redirect("/login")
     }
   }, [])
 
@@ -40,6 +40,7 @@ export function Home() {
         <h4 className={styles.textExperience}>Experience is the new luxury!</h4>
         <span className={styles.textTechShop}>-Tech Shop.</span>
       </div>
+      <ContainerProducts/>
     </>
   );
 }

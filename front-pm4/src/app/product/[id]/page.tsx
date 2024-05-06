@@ -30,7 +30,7 @@ export const Product = ({ params }: { params: { id: any } }) => {
     const handleBuy = (event:any) => {
         if (!userSession) {
             alert("Debes estar logeado para poder realizar la compra")
-            router.push("/user")
+            router.push("/login")
         }
     }
 
@@ -43,7 +43,8 @@ export const Product = ({ params }: { params: { id: any } }) => {
                         name={product.name}
                         price={product.price}
                         description={product.description}
-                        onClick={handleBuy}                    //image={product.image}
+                        onClick={handleBuy}                   
+                        image={product.image}
                 />
                 )
             :

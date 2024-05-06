@@ -1,27 +1,40 @@
+"use client"
 // components
 import Link from 'next/link'
 import { ProductCard } from '../ProductCard/ProductCard'
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+import { useEffect, useState } from 'react'
+import { IUserSession } from '@/app/interfaces/IUserSession'
+import { getProducts } from '@/helpers/getProductById';
+     
+export default function ContainerProducts() {
 
-        async function getData() {
-        const res = await fetch(`${apiUrl}/products`)
-    
-        if (!res.ok) {
-          // This will activate the closest `error.js` Error Boundary
-          throw new Error('Failed to fetch data')
+    const [userSession, setUserSession] = useState<IUserSession>();
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true)
+        const fetchData = async () => {
+            const products = await getProducts()
+            setLoading(false)
+            setProducts(products)
         }
-       
-        return res.json()
-      }
-       
-      export default async function ContainerProducts() {
-        const data = await getData()
+        fetchData()
+
+        if (typeof window !== "undefined" && window.localStorage) {
+            const userToken = localStorage.getItem('userSession');
+            setUserSession(JSON.parse(userToken!))
+        }
+    }, [])
        
         return (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[6em] flex-wrap m-8 p-8 justify-items-center" >
-                {data.map((card:any) => {
+            <>
+            {
+            !loading ? 
+            (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[6em] flex-wrap m-8 p-8 justify-items-center" >
+                {products && products.map((card:any) => {
                     return (
-                        <Link href={`/product/${card.id}`} key={card.name}>
+                        <Link href={`/product/${card.id}`} key={card.id}>
                         <ProductCard
                         key={card.id}
                         image={card.image}
@@ -31,6 +44,10 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL
                         </Link>
                     )
                 })}
-            </div>
+            </div>)
+            :
+            <div>Loading...</div>
+         }
+         </>
         )
     }

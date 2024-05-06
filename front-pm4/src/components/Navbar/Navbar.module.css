@@ -4,9 +4,6 @@
 }
 
 .navBar {
- display: flex;
- flex-direction: row;
- justify-content: space-between;
  margin: 20px 0px;
  font-family: system-ui;
  align-items: center;
@@ -14,14 +11,7 @@
  background-color: #e3e3e3;
 }
 
-.ulNavBar {
-    display: flex;
-    flex-direction: row;
-    gap: 80px;
-}
-
 .endNavBar{
-    display:flex;
     flex-direction: row;
     gap: 18px;
 }
