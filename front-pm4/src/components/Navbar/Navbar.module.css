@@ -14,6 +14,7 @@
 .endNavBar{
     flex-direction: row;
     gap: 18px;
+    align-items: center;
 }
 
 .link {

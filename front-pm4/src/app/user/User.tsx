@@ -33,8 +33,8 @@ export const User = () => {
                 <span>Direccion de entrega: {userSession?.userData.address}</span>
             </div>
             <section className="m-4 p-2 font-sans">
-                <h1>Compras realizadas</h1>
-                <Orders userId={userSession?.userData.id}></Orders>
+                <h1 className="mb-2 font-sans font-semibold">Compras realizadas</h1>
+                <Orders></Orders>
             </section>
         </>
     )
