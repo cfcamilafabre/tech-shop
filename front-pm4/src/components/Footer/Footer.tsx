@@ -19,7 +19,7 @@ export const Footer = () => {
                 <h1 className={styles.tituloFooter}>CONTACT</h1>
                 <span className={styles.secondaryText}>Calle cualquiera 123, BsAs, ARG</span>
                 <span className={styles.secondaryText}>Email: contacto@mail.com</span>
-                <span className={styles.secondaryText} >Phone: 123-456-789</span>
+                <span className={styles.secondaryText} >Telefono: 123-456-789</span>
             </div>
             <div className={styles.divFooter}>
                 <h1 className={styles.tituloFooter}>SOCIAL MEDIA</h1>

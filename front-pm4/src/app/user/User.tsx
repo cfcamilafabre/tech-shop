@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { IUserSession } from "../interfaces/IUserSession";
 import { useRouter } from "next/navigation";
-import { getOrderById } from "@/helpers/getOrders";
 import Orders from "@/components/Orders/Orders";
 
 export const User = () => {

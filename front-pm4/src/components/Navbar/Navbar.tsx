@@ -6,7 +6,7 @@ import Link from "next/link";
 import styles from './Navbar.module.css'
 import { useEffect, useState } from "react";
 import { IUserSession } from "@/app/interfaces/IUserSession";
-import { redirect, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface INavProps {
     backgroundColor?: string;
@@ -15,15 +15,16 @@ interface INavProps {
 
 export const Navbar: React.FC<INavProps> = ({ backgroundColor, textColor }) => {
 
+    const pathname = usePathname();
     const router = useRouter();
 
     const [userSession, setUserSession] = useState<IUserSession>();
     useEffect(() => {
         if (typeof window !== "undefined" && window.localStorage) {
             const userToken = localStorage.getItem('userSession');
-            setUserSession(JSON.parse(userToken!))
+            setUserSession(JSON.parse(userToken!));
         }
-    }, [])
+    }, [pathname])
 
     const handleLogOut = () => {
         localStorage.removeItem('userSession')
@@ -62,9 +63,9 @@ export const Navbar: React.FC<INavProps> = ({ backgroundColor, textColor }) => {
 
             <div id="mobile-menu" className="absolute hidden left-0 top-[10.6rem] bg-[#e3e3e3] p-4 w-52 ">
                 <ul className="flex flex-col gap-2 mb-4 ">
-                    <li><Link className={styles.link} href="/home">HOME</Link></li>
-                    <li><Link className={styles.link} href="">ABOUT</Link></li>
-                    <li><Link className={styles.link} href="">CONTACT US</Link></li>
+                    <li><Link className={styles.link} href="/home">PRODUCTOS</Link></li>
+                    <li><Link className={styles.link} href="">SOBRE NOSOTROS</Link></li>
+                    <li><Link className={styles.link} href="">CONTACTO</Link></li>
                 </ul>
                 {userSession ?
                     <>
@@ -93,9 +94,9 @@ export const Navbar: React.FC<INavProps> = ({ backgroundColor, textColor }) => {
 
             <div className="hidden md:flex">
                 <ul className="flex flex-row gap-20">
-                    <li><Link className={styles.link} href="/home">HOME</Link></li>
-                    <li><Link className={styles.link} href="">ABOUT</Link></li>
-                    <li><Link className={styles.link} href="">CONTACT US</Link></li>
+                    <li><Link className={styles.link} href="/home">PRODUCTOS</Link></li>
+                    <li><Link className={styles.link} href="">SOBRE NOSOTROS</Link></li>
+                    <li><Link className={styles.link} href="">CONTACTO</Link></li>
                 </ul>
             </div>
             {userSession ?

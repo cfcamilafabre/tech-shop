@@ -22,14 +22,14 @@ export const Cart = () => {
             !userToken && redirect('/user')
         }
 
-        const storedCard = JSON.parse(localStorage.getItem("cart") || "[]");
-        if(storedCard) {
-           let totalCart = 0;
-           storedCard?.map((item:IProduct) => {
-            totalCart = totalCart + item.price
-           })
-           setTotal(totalCart)
-           setCart(storedCard)
+        const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        if (storedCart) {
+            let totalCart = 0;
+            storedCart?.map((item: IProduct) => {
+                totalCart = totalCart + item.price
+            })
+            setTotal(totalCart)
+            setCart(storedCart)
         }
     }, [])
 
@@ -41,9 +41,21 @@ export const Cart = () => {
             setCart([]);
             setTotal(0);
             alert("Compra realizada con éxito")
-        } catch (error:any) {
-            throw new Error (error)
+        } catch (error: any) {
+            throw new Error(error)
         }
+    }
+
+    function handleDeleteItem(id: number) {
+        const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const filteredCart = storedCart?.filter((items: IProduct) => items.id !== id)
+        localStorage.setItem("cart", JSON.stringify(filteredCart))
+        let totalCart = 0;
+        filteredCart?.map((items: IProduct) => {
+            totalCart = totalCart + items.price;
+        });
+        setTotal(totalCart);
+        setCart(filteredCart);
     }
 
 
@@ -59,7 +71,7 @@ export const Cart = () => {
                                 <div className={styles.item} key={item.id}>
                                     <span>{item.name}</span>
                                     <span>${item.price} USD</span>
-                                    <button className='buttonDesign'>Eliminar</button>
+                                    <button className='buttonDesign' onClick={() => handleDeleteItem(item.id)} >Eliminar</button>
                                 </div>
                             )
                         })

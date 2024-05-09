@@ -2,7 +2,13 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 export async function getProductsDB() {
     try {
-        const res = await fetch(`${apiUrl}/products`)
+        const res = await fetch(`${apiUrl}/products`, {
+            method: "GET",
+            headers: {
+                'ngrok-skip-browser-warning': 'true'
+            },
+            next: {revalidate: 3600}
+        })
         const products = await res.json();
         return products;
     } catch (error: any) {

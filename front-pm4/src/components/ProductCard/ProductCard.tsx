@@ -9,7 +9,7 @@ interface IProductProps {
     description?: string;
     price: number;
     stock?: number;
-    image?: string;
+    image?: any;
     categoryId?: number;
 }
 
@@ -19,7 +19,7 @@ export const ProductCard: React.FC<IProductProps> = ({ name, price, image}) => {
         <div className={styles.containerCard}>
             <div className={styles.containerImage}>
             <Image 
-            src="/iphone.jpg"
+            src={image}
             width={80}
             height={80}
             alt='foto producto'
