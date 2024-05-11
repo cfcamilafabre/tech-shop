@@ -37,7 +37,7 @@ export default function ContainerProducts() {
                         <Link href={`/product/${card.id}`} key={card.id}>
                         <ProductCard
                         key={card.id}
-                        image={card.image}
+                        image="/iphone.jpg"
                         name={card.name}
                         price={card.price}
                         />

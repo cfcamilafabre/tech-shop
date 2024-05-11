@@ -22,7 +22,7 @@ export const ProductCard: React.FC<IProductProps> = ({ name, price, image}) => {
             src={image}
             width={80}
             height={80}
-            alt='foto producto'
+            alt='Descripcion del producto'
             className={styles.imageProduct}></Image>
             </div>
             <span>{name}</span>

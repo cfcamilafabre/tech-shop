@@ -21,7 +21,7 @@ export const ProductDetail: React.FC<IProductDetail> = ({ image, name, price, de
             <section className={styles.sectionProduct}>
                 <div>
                     <Image 
-                    src={image}
+                    src="/iphone.jpg"
                     height={480}
                     width={480}
                     alt="foto producto"
